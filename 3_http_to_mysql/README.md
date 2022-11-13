@@ -52,6 +52,12 @@ func new --name HTTP2MySQL --language python
 Choose option "HTTP trigger" (9)  
 
 
+Deploy Function code:  
+
+```  
+cp src/__init__.py HTTP2MySQL/  
+```  
+
 ```  
 az login
 az account set --subscription e0b9cada-61bc-4b5a-bd7a-52c606726b3b
