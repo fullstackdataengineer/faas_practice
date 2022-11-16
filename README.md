@@ -9,6 +9,13 @@ cd core_tools
 docker build -t func_core_tools .
 ```   
 
+Go back to the faas_practice directory:  
+
+```   
+cd ..
+pwd
+```   
+
 Then, spin up a container exposing each Practice directory as a volume:  
 
 ```
@@ -21,10 +28,12 @@ Follow README.md and try to get the function to work.
 When you complete the deployment and testing of 1_http_trigger_practice, you may do the same with 2_queue_to_table:  
 
 ```
-docker run -it --rm -v ${PWD}/3_http_to_mysql/:/3_http_to_mysql --workdir=/3_http_to_mysql func_core_tools bash
+docker run -it --rm -v ${PWD}/2_queue_to_table/:/2_queue_to_table --workdir=/2_queue_to_table func_core_tools bash
 ```    
 
 
+And finally, do the same with 3_http_to_mysql:  
 
-
-
+```
+docker run -it --rm -v ${PWD}/3_http_to_mysql/:/3_http_to_mysql --workdir=/3_http_to_mysql func_core_tools bash
+```    
