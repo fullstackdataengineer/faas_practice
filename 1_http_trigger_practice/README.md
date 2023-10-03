@@ -71,17 +71,17 @@ Run this if you want to create a new Resource Group:
 
 4. Create Storage Account or Use an existing one  
 
-```export storageaccount=lesson11st$randomId```  
+```export storageaccount=lesson$randomId```  
 
 Run this if you awnt to create a new Storage Account:  
 ```  
 az storage account create \
-    --name lesson11st$randomId \
+    --name $storageaccount \
     --resource-group $resource \
     --sku Standard_LRS
 ```  
 
-5. Create Function App named MyHttpApp$randomId. A function App may contain multiple functions  
+5. Create Function App named ClassifyHTTP$randomId. A function App may contain multiple functions  
 
 ```  
 az functionapp create --consumption-plan-location eastus \
@@ -99,6 +99,5 @@ az functionapp create --consumption-plan-location eastus \
 ```  
 func azure functionapp publish ClassifyHTTP$randomId --python
 ```  
-
 
 This command may take +15 minutes to complete.  
