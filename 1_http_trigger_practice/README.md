@@ -59,7 +59,7 @@ In this run, the value was: e5u66mj92zr
 2. Log on to Azure  
 
 ```az login ```  
-Follow the steps, which involved browsing too https://microsoft.com/devicelogin and inserting a code.  
+Follow the steps, which involve browsing too https://microsoft.com/devicelogin and inserting a code.  
 
 ```az account set --subscription e0b9cada-61bc-4b5a-bd7a-52c606726b3b ```  
 3. Create Resource Group or Use an existing one  
@@ -73,7 +73,7 @@ Run this if you want to create a new Resource Group:
 
 ```export storageaccount=lesson$randomId```  
 
-Run this if you awnt to create a new Storage Account:  
+Run this if you want to create a new Storage Account:  
 ```  
 az storage account create \
     --name $storageaccount \
