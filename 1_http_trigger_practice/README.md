@@ -1,7 +1,5 @@
 # HTTP Trigger Practice  
 
-
-
 ## Function and Environment Setup:  
 
 ### Create Python 3.9 Virtual Environment  
@@ -13,11 +11,14 @@ source .venv/bin/activate
 
 ### Initializa Azure Function App Environment  
 
-```func init --worker-runtime python  ```    
+We will use Python Programming Reference model V1. There is a recent model (V2) based on Python decorators that is out of the scope of this Lab.  
 
+```func init classifyHTTP --python -m V1  ```    
+```cd classifyHTTP```
 ### Create HTTP Trigger Function: classify  
 
-```func new --name classify --template "HTTP trigger" --language python  ```  
+```func new --name classify --template "HTTP trigger" --authlevel "function"```  
+
 
 A function can be tested locally running:  
 
@@ -26,7 +27,8 @@ A function can be tested locally running:
 
 ### Move code to function directory:  
 
-```cp src/* classify  ```  
+```cp ../src/* classify  ```  
+```cp ../requirements.txt .  ```  
 
 ### Install Python dependencies on virtual environment:  
 
@@ -50,27 +52,26 @@ Azure Function:
 
 1. Create a random ID  
 
-```randomId=$(cat /dev/urandom | env LC_ALL=C tr -dc 'a-z0-9' | fold -w 11 | head -n 1)```  
+```export randomId=$(cat /dev/urandom | env LC_ALL=C tr -dc 'a-z0-9' | fold -w 11 | head -n 1)```  
 
 In this run, the value was: e5u66mj92zr  
 
 2. Log on to Azure  
 
-```az login -u $username -p $password ```  
+```az login ```  
+Follow the steps, which involved browsing too https://microsoft.com/devicelogin and inserting a code.  
+
 ```az account set --subscription e0b9cada-61bc-4b5a-bd7a-52c606726b3b ```  
 3. Create Resource Group or Use an existing one  
 
-```resource=IE_ST_BCSAI_DUD_STUDENT```  
+```export resource=IE_ST_BCSAI_DUD_STUDENT```  
 
 Run this if you want to create a new Resource Group:  
-```
-resource=$(az group list --query "[0].name" --output tsv)  
-az group create --name $resource --location eastus
-```  
+```az group create --name $resource --location eastus```  
 
 4. Create Storage Account or Use an existing one  
 
-```storageaccount=iestdudbstudent0001```  
+```export storageaccount=lesson11st$randomId```  
 
 Run this if you awnt to create a new Storage Account:  
 ```  
@@ -88,7 +89,7 @@ az functionapp create --consumption-plan-location eastus \
      --runtime-version 3.9 \
      --functions-version 4 \
      --resource-group $resource \
-     --name MyHttpApp$randomId \
+     --name ClassifyHTTP$randomId \
      --os-type linux \
      --storage-account ${storageaccount}
 ```  
@@ -96,11 +97,8 @@ az functionapp create --consumption-plan-location eastus \
 6. Publish your Function App to Azure:  
 
 ```  
-func azure functionapp publish MyHttpApp$randomId --python
+func azure functionapp publish ClassifyHTTP$randomId --python
 ```  
 
 
 This command may take +15 minutes to complete.  
-
-
-
