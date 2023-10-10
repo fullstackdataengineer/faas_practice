@@ -6,14 +6,14 @@
       "type": "queueTrigger",
       "direction": "in",
       "queueName": "python-queue-items",
-      "connection": "MY_QUEUE_ STORAGE_ACCT_APP_SETTING"
+      "connection": "AzureQueueStorage"
     },
     {
       "type": "table",
       "direction": "out",
       "tableName": "outTable",
       "name": "entity",
-      "connection": "MY_TABLE_STORAGE_ACCT_APP_SETTING"
+      "connection": "AzureTableStorage"
     }
   ]
 }
