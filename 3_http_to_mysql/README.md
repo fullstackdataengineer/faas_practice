@@ -46,8 +46,8 @@ mysql-connector-python
 ## Create new Function App  
 
 ```  
-func init --worker-runtime python  
-func new --name HTTP2MySQL --language python  
+func init HTTP2MySQL --python -m V1  
+func new --name HTTP2MySQL --authlevel "function"
 ```  
 Choose option "HTTP trigger" (9)  
 
