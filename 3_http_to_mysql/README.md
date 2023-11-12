@@ -46,21 +46,21 @@ mysql-connector-python
 ## Create new Function App  
 
 ```  
-func init HTTP2MySQL --python -m V1  
-func new --name HTTP2MySQL --authlevel "function"
+func init HTTP2MySQL --python -m V1
+cd HTTP2MySQL
+func new --name HTTP2MySQL --template "HTTP trigger" --authlevel "function"
 ```  
-Choose option "HTTP trigger" (9)  
-
 
 Deploy Function code:  
 
 ```  
-cp src/__init__.py HTTP2MySQL/  
+cp ../src/__init__.py HTTP2MySQL/  
+cp ../requirements.txt .
 ```  
 
 ```  
-az login
-az account set --subscription e0b9cada-61bc-4b5a-bd7a-52c606726b3b
+az login --tenant 5ca2bc70-353c-4d1f-b7d7-7f2b2259df68 
+az account set --subscription e0b9cada-61bc-4b5a-bd7a-52c606726b3b 
 
 resource=IE_ST_BCSAI_DUD_STUDENT
 storageaccount=iestdudbstudent0001  
@@ -101,6 +101,10 @@ Run function locally:
 ```  
 func start  
 ```  
+
+Test call using curl:  
+
+> curl "http://localhost:7071/api/HTTP2MySQL?name=Edu&state=ready"
 
 
 Finally, we are ready to publish our Function code to the Azure Function App:  
