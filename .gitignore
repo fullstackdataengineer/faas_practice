@@ -1,0 +1,15 @@
+.aspnet/
+.azure-functions-core-tools/
+.azure/
+.bash_history
+.cache/
+.dotnet/
+.gitconfig
+.gnupg/
+.ssh/
+.vscode-server/
+1_http_trigger_practice/SimpleHTTP/*
+1_http_trigger_practice/.venv/
+2_queue_to_table/.venv/
+4_durable_functions/.venv
+4_durable_functions/VanillaDurable/.gitignore*

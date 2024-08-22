@@ -2,50 +2,39 @@
 
 ## Function and Environment Setup:  
 
-### Create Python 3.9 Virtual Environment  
+### Create Python 3.10 Virtual Environment  
 
 ```
-python3.9 -m venv .venv
+python3.10 -m venv .venv
 source .venv/bin/activate
 ```  
 
 ### Initializa Azure Function App Environment  
 
-We will use Python Programming Reference model V1. There is a recent model (V2) based on Python decorators that is out of the scope of this Lab.  
+We will use Python Programming Reference model V2, which is the most recent one based on Python decorators.  
 
-```func init classifyHTTP --python -m V1  ```    
-```cd classifyHTTP```
-### Create HTTP Trigger Function: classify  
+```func init SimpleHTTP --worker-runtime python --model V2```    
+```cd SimpleHTTP```  
 
-```func new --name classify --template "HTTP trigger" --authlevel "function"```  
+### Create HTTP Trigger Function: simple  
 
+```func new --name simple --template "HTTP trigger"```  
 
-A function can be tested locally running:  
-
-```func start  ```    
-
-
-### Move code to function directory:  
-
-```cp ../src/* classify  ```  
-```cp ../requirements.txt .  ```  
+For Auth Level, choose ANONYMOUS.
 
 ### Install Python dependencies on virtual environment:  
 
 ```pip install --no-cache-dir -r requirements.txt  ```  
 
-requirements.txt must be as follows:  
+## Test Function Locally
 
-```
-azure-functions
-requests
--f https://download.pytorch.org/whl/torch_stable.html
-torch==1.12.0+cpu
-torchvision==0.13.0+cpu
-```  
+A function can be tested locally running:  
+
+```func start  ```    
+
+On a different Terminal, you may use curl to call the function and get responses.  
 
 ## Azure Setup  
-
 
 Azure Function:
 
@@ -58,7 +47,7 @@ In this run, the value was: e5u66mj92zr
 
 2. Log on to Azure  
 
-```az login ```  
+```az login --use-device-code ```  
 Follow the steps, which involve browsing too https://microsoft.com/devicelogin and inserting a code.  
 
 ```az account set --subscription e0b9cada-61bc-4b5a-bd7a-52c606726b3b ```  
@@ -86,10 +75,10 @@ az storage account create \
 ```  
 az functionapp create --consumption-plan-location eastus \
      --runtime python \
-     --runtime-version 3.9 \
+     --runtime-version 3.11 \
      --functions-version 4 \
      --resource-group $resource \
-     --name ClassifyHTTP$randomId \
+     --name SimpleHTTP$randomId \
      --os-type linux \
      --storage-account ${storageaccount}
 ```  
@@ -97,7 +86,9 @@ az functionapp create --consumption-plan-location eastus \
 6. Publish your Function App to Azure:  
 
 ```  
-func azure functionapp publish ClassifyHTTP$randomId --python
+func azure functionapp publish SimpleHTTP$randomId
 ```  
 
-This command may take +15 minutes to complete.  
+This command may take +15 minutes to complete. When it is done, information about the Function App from your browser using the supplied "Invoke url". This should work without any authentication as we set the Auth Level to ANONYMOUS.  
+
+Now, log on to the Azure Portal and check your Function App. Test it using the browser from the Azure Portal.  
