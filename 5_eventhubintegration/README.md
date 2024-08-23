@@ -1,13 +1,6 @@
+# Integrating Azure Event Hub and Azure Functions with Python
 
-
-
-reference: [Azure Event Hubs trigger and bindings for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs?tabs=isolated-process%2Cextensionv5&pivots=programming-language-python)  
-
-
-
-
-# Azure Event Hubs trigger and bindings for Azure Functions
-
+In this lab, you will learn how to integrate Azure Event Hub and Azure Functions using the Python SDK and Core Tools. Azure Event Hub is a highly scalable and event-driven data streaming platform that allows you to ingest and process large volumes of data in real-time. Azure Functions, on the other hand, is a serverless compute service that enables you to run your code in response to events and triggers. Event Hub messages can be processed by Azure Functions using the Event Hub trigger template.
 
 ## Create Python 3.10 Virtual Environment  
 
