@@ -25,6 +25,7 @@ To enable local development, modify local.settings.json file to include the Azur
     "AzureWebJobsStorage": "STORAGE_ACCOUNT_CONNECTION_STRING",
     "eventHubConnectionAppSetting": "EVENT_HUB_CONNECTION_STRING",
   }
+}
 ```
 
 Then, create a function based on the Azure Event Hub trigger template:  
@@ -55,6 +56,11 @@ Notice the value of connection is the same as the key in the local.settings.json
 "cardinality": "many" indicates that the function will process multiple events from the Event Hub:
 
 ```python
+import logging
+
+from azure.functions import EventHubEvent
+from typing import List
+
 def main(events: List[EventHubEvent]):
     for event in events:
       logging.info(f'Function triggered to process a message: {event.get_body().decode()}')
